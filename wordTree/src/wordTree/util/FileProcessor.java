@@ -44,7 +44,7 @@ public class FileProcessor
 	 * @param filePath - contains the path of the file from which a line needs to be read
 	 * @return a line from the input file as String
 	 */
-	public String readLine(String filePath)
+	public synchronized String readLine(String filePath)
 	{
 		String oneLineFromFile = "";
 		try 

@@ -31,19 +31,23 @@ public class BSTTree
 	 * @param bNumber - is the bNumber whose node is to be found
 	 * @return node that matches the bNumber passed as parameter
 	 */
-	public Node search(Node recursionRoot, int bNumber)
+	public Node search(Node recursionRoot, String word)
 	{
-		if(null == recursionRoot || bNumber == recursionRoot.getbNumber())
+		if(null == recursionRoot || 0 == word.compareTo(recursionRoot.getWord()))
 		{
 			return new Node(recursionRoot);
 		}
 		
-		if(bNumber < recursionRoot.getbNumber())
+		//if(bNumber < recursionRoot.getbNumber())
+		System.out.println("Test Word: " + word);
+		System.out.println("Test Root's Word: " + recursionRoot.getWord());
+		
+		if(word.compareTo(recursionRoot.getWord()) < 0)
 		{
-			return search(recursionRoot.getLeft(), bNumber);
+			return search(recursionRoot.getLeft(), word);
 		}
 		
-		return search(recursionRoot.getRight(), bNumber);
+		return search(recursionRoot.getRight(), word);
 	}
 
 	/**
@@ -68,21 +72,25 @@ public class BSTTree
 			rootRecursive = node;
 			return rootRecursive;
 		}
+		
+		System.out.println("Rec Word: " + node.getWord());
+		System.out.println("Rec Root's Word: " + rootRecursive.getWord());
 
-		//If node's bNumber is smaller than root's bNumber, add the node as left child
-		if(node.getbNumber() < rootRecursive.getbNumber())
+		//If node's word is smaller than root's word, add the node as left child
+		//if(node.getbNumber() < rootRecursive.getbNumber())
+		if(node.getWord().compareTo(rootRecursive.getWord()) < 0)
 		{
 			rootRecursive.setLeft(insertRecursive(rootRecursive.getLeft(), node));
 		}
-		//If node's bNumber is greater than root's bNumber, add the node as right child
-		else if (node.getbNumber() > rootRecursive.getbNumber())
+		//If node's word is greater than root's word, add the node as right child
+		else if (node.getWord().compareTo(rootRecursive.getWord()) > 0)
 		{
 			rootRecursive.setRight(insertRecursive(rootRecursive.getRight(), node));
 		}
-		//If Node with that bNumber already exists, just update the courses of the existing node
-		else if (node.getbNumber() == rootRecursive.getbNumber())
+		//If Node with that word already exists, just update the count of the existing node
+		else if (0 == node.getWord().compareTo(rootRecursive.getWord()))
 		{
-			rootRecursive.setCourses(node.getCourses());
+			rootRecursive.setWordOccurances(node.getWordOccurances());
 		}
 		
 		return rootRecursive;

@@ -1,6 +1,8 @@
 package wordTree.driver;
 
+import wordTree.store.Results;
 import wordTree.threadMgmt.CreateWorkers;
+import wordTree.util.FileProcessor;
 import wordTree.util.MyLogger;
 
 /**
@@ -57,9 +59,9 @@ public class Driver
 					deleteWords[i] = args[i+3];
 				}*/
 
-				if(args[4+NUM_THREADS].matches("[0-4]"))
+				if(args[3+NUM_THREADS].matches("[0-4]"))
 				{
-					debugVal = Integer.parseInt(args[4+NUM_THREADS]);
+					debugVal = Integer.parseInt(args[3+NUM_THREADS]);
 					MyLogger.setDebugValue(debugVal);
 				}
 				else
@@ -68,7 +70,10 @@ public class Driver
 					System.exit(1);
 				}
 
-				CreateWorkers worker = new CreateWorkers();
+				FileProcessor fileProc = new FileProcessor(inputFilePath);
+				Results result = new Results(outputFilePath);
+				CreateWorkers workers = new CreateWorkers(fileProc, result);
+				workers.startPopulateWorkers(NUM_THREADS);
 			}
 			else
 			{

@@ -1,7 +1,5 @@
 package wordTree.util;
 
-import java.util.ArrayList;
-
 /**
  * This class creates Nodes that can act as Subject as well as Observer
  * @author hloya
@@ -12,22 +10,22 @@ public class Node implements RedBlackTreeContantsIfc
 	/**
 	 * Data members
 	 */
-	private int bNumber;
-	private ArrayList<String> courses;
+	private String word;
+	private int wordOccurances;
 	private Node left, right;
 	private int color;
-	private ArrayList<Node> observers;
+	//private ArrayList<Node> observers;
 
 	/**
 	 * Default Constructor used to initialize the data members to default values
 	 */
 	public Node()
 	{
-		bNumber = 0;
-		courses = new ArrayList<String>();
+		word = "";
+		wordOccurances = 0;
 		left = right = null;
 		color = RED;
-		observers = new ArrayList<Node>();
+		//observers = new ArrayList<Node>();
 	}
 	
 	/**
@@ -36,44 +34,34 @@ public class Node implements RedBlackTreeContantsIfc
 	 */
 	public Node(Node node)
 	{
-		bNumber = node.getbNumber();
-		courses = node.getCourses();
+		word = node.getWord();
+		wordOccurances = node.getWordOccurances();
 		left = node.getLeft();
 		right = node.getRight();
 		color = node.getColor();
-		observers = node.getObservers();
+		//observers = node.getObservers();
 	}
 
 	/**
-	 * Accessor for bNumber
-	 * @return bNumber of the Caller Node
+	 * Accessor for wordOccurances
+	 * @return wordOccurances of the Caller Node
 	 */
-	public int getbNumber() 
-	{
-		return bNumber;
+	public int getWordOccurances() {
+		return wordOccurances;
 	}
 
-	public void setbNumber(int bNumber) 
-	{
-		this.bNumber = bNumber;
+	public void setWordOccurances(int wordOccurances) {
+		this.wordOccurances = wordOccurances;
+	}
+	
+	
+
+	public String getWord() {
+		return word;
 	}
 
-	/**
-	 * Accessor for Courses
-	 * @return ArrayList containing courses of the Caller Node
-	 */
-	public ArrayList<String> getCourses() 
-	{
-		return new ArrayList<String>(courses);
-	}
-
-	/**
-	 * Mutator for Courses
-	 * @param courses - Arraylist of courses that will be set as Caller Node's Courses
-	 */
-	public void setCourses(ArrayList<String> courses) 
-	{
-		this.courses = courses;
+	public void setWord(String word) {
+		this.word = word;
 	}
 	
 	/**
@@ -132,9 +120,9 @@ public class Node implements RedBlackTreeContantsIfc
 	 * Accessor for ArrayList of Observers
 	 * @return ArrayList of Observers of the Caller Node
 	 */
-	public ArrayList<Node> getObservers() {
+	/*public ArrayList<Node> getObservers() {
 		return observers;
-	}
+	}*/
 	
 	
 	/**
@@ -144,7 +132,8 @@ public class Node implements RedBlackTreeContantsIfc
 	public Node clone() throws CloneNotSupportedException
 	{
 		Node clone =  new Node();
-		clone.bNumber = new Integer(bNumber);
+		clone.word = new String(word);
+		clone.wordOccurances = new Integer(wordOccurances);
 		if(null != left)
 		{
 			clone.left = new Node(left);
@@ -164,17 +153,16 @@ public class Node implements RedBlackTreeContantsIfc
 		}
 		
 		clone.color = new Integer(color);
-		clone.courses = new ArrayList<String>(courses);
-		clone.observers = new ArrayList<Node>(observers);
+		//clone.observers = new ArrayList<Node>(observers);
 		return clone;
 	}
 
 	/**
-	 * Custom implementation of toString method to print bNUmber and Courses of the Caller Node
+	 * Custom implementation of toString method to print Word and wordOccurances of the Caller Node
 	 */
 	@Override
 	public String toString() {
-		return "Node : bNumber = " + bNumber + ", courses = " + courses;
+		return "Node : Word = " + word + ", Word Count = " + wordOccurances;
 	}
 	
 	
