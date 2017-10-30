@@ -25,7 +25,7 @@ public class RedBlackTree extends BSTTree implements RedBlackTreeContantsIfc
 	/**
 	 * Inserts the node passed as parameter into the Caller Red Black Tree
 	 */
-	public synchronized void insert(Node node)
+	public void insert(Node node)
 	{	
 		super.insert(node);
 		//sets the color of root as Black - Red Black Tree property

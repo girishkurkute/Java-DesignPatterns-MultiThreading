@@ -1,13 +1,12 @@
 package wordTree.threadMgmt;
 
 import wordTree.store.Results;
-import wordTree.util.FileProcessor;
 import wordTree.util.Node;
 import wordTree.util.RedBlackTree;
 
 public class DeleteThread implements Runnable
 {
-	private FileProcessor inputFileProc;
+	@SuppressWarnings("unused")
 	private Results outputResult;
 	private String delWord;
 

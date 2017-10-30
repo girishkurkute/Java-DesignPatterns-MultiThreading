@@ -111,7 +111,6 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface
 			e.printStackTrace();
 			System.exit(1);
 		}
-		
 	}
 	
 	/**

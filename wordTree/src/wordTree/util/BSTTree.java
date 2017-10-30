@@ -38,9 +38,6 @@ public class BSTTree
 			return new Node(recursionRoot);
 		}
 		
-		//System.out.println("Test Word: " + word);
-		//System.out.println("Test Root's Word: " + recursionRoot.getWord());
-		
 		if(word.compareTo(recursionRoot.getWord()) < 0)
 		{
 			return search(recursionRoot.getLeft(), word);
@@ -71,9 +68,6 @@ public class BSTTree
 			rootRecursive = node;
 			return rootRecursive;
 		}
-		
-		//System.out.println("Rec Word: " + node.getWord());
-		//System.out.println("Rec Root's Word: " + rootRecursive.getWord());
 
 		//If node's word is smaller than root's word, add the node as left child
 		if(node.getWord().compareTo(rootRecursive.getWord()) < 0)
