@@ -36,12 +36,12 @@ public class CreateWorkers
 		callJoinMethod();
 	}
 
-	public void startDeleteWorkers(int numberOfThreads)
+	public void startDeleteWorkers(int numberOfThreads, String deleteWords[])
 	{
 		int i = 1;
 		while(i <= numberOfThreads)
 		{
-			DeleteThread delT = new DeleteThread(inputFileProc, outputResult, commonTree);
+			DeleteThread delT = new DeleteThread(deleteWords[i-1], outputResult, commonTree);
 			Thread delWorker = new Thread(delT, "delWorker"+i);
 			delWorker.start();
 			i++;

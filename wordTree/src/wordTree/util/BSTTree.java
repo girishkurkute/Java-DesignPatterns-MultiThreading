@@ -31,7 +31,7 @@ public class BSTTree
 	 * @param bNumber - is the bNumber whose node is to be found
 	 * @return node that matches the bNumber passed as parameter
 	 */
-	public synchronized Node search(Node recursionRoot, String word)
+	public Node search(Node recursionRoot, String word)
 	{
 		if(null == recursionRoot || 0 == word.compareTo(recursionRoot.getWord()))
 		{

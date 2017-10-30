@@ -74,6 +74,7 @@ public class Driver
 				Results result = new Results(outputFilePath);
 				CreateWorkers workers = new CreateWorkers(fileProc, result);
 				workers.startPopulateWorkers(NUM_THREADS);
+				workers.startDeleteWorkers(NUM_THREADS, deleteWords);
 			}
 			else
 			{
