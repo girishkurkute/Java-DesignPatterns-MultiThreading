@@ -25,8 +25,6 @@ public class DeleteThread implements Runnable
 		delWord = deleteWord;
 		outputResult = results;
 		localTree = tree;
-
-
 	}
 
 	@Override
@@ -44,13 +42,15 @@ public class DeleteThread implements Runnable
 					node_orig.setWordOccurances(node_orig.getWordOccurances() - 1);
 					localTree.insert(node_orig);
 				}
+				else
+				{
+					throw new NullPointerException();
+				}
 			}
 		}
 		catch(IndexOutOfBoundsException | NullPointerException e)
 		{
-			System.err.println("PHATA");
+			System.err.println("Word Not Found or has count of 0, Skipping and Continuing with Next Word (if any)");
 		}
-
 	}
-
 }

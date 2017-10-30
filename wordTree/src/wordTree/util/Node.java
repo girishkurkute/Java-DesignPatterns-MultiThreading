@@ -1,11 +1,13 @@
 package wordTree.util;
 
+import wordTree.util.RedBlackTree.RedBlackTreeConstants;
+
 /**
  * This class creates Nodes that can act as Subject as well as Observer
  * @author hloya
  *
  */
-public class Node implements RedBlackTreeContantsIfc
+public class Node
 {
 	/**
 	 * Data members
@@ -24,7 +26,7 @@ public class Node implements RedBlackTreeContantsIfc
 		word = "";
 		wordOccurances = 0;
 		left = right = null;
-		color = RED;
+		color = RedBlackTreeConstants.RED.colorValue;
 		//observers = new ArrayList<Node>();
 	}
 	

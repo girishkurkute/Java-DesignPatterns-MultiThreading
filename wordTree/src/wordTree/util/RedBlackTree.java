@@ -9,11 +9,20 @@ package wordTree.util;
  * @author hloya
  *
  */
-public class RedBlackTree extends BSTTree implements RedBlackTreeContantsIfc
+public class RedBlackTree extends BSTTree
 {
 	//Implement this using fixed int values as per RedBlackTreeContantsIfc and then remove RedBlackTreeContantsIfc
-	//public static enum RedBlackTreeConstants {RED, BLACK};
+	public static enum RedBlackTreeConstants 
+	{
+		RED(1), BLACK(0);
 	
+		int colorValue;
+		private RedBlackTreeConstants(int value)
+		{
+			colorValue = value;
+		}
+	}
+
 	/**
 	 * Default Constructor which calls the Default Constructor of parent Binary Search Tree
 	 */
@@ -29,7 +38,7 @@ public class RedBlackTree extends BSTTree implements RedBlackTreeContantsIfc
 	{	
 		super.insert(node);
 		//sets the color of root as Black - Red Black Tree property
-		getRoot().setColor(BLACK);
+		getRoot().setColor(RedBlackTreeConstants.BLACK.colorValue);
 	}
 
 	public Node insertRecursive(Node recursionRoot, Node node)
@@ -59,19 +68,19 @@ public class RedBlackTree extends BSTTree implements RedBlackTreeContantsIfc
 		if ((!isRed(node) &&  isRed(node.getLeft()) &&  isRed(node.getRight()))  || (isRed(node)  && !isRed(node.getLeft()) && !isRed(node.getRight())))
 		{
 			if(isRed(node))
-				node.setColor(BLACK);
+				node.setColor(RedBlackTreeConstants.BLACK.colorValue);
 			else
-				node.setColor(RED);
+				node.setColor(RedBlackTreeConstants.RED.colorValue);
 
 			if(isRed(node.getLeft()) && isRed(node.getRight()))
 			{
-				node.getLeft().setColor(BLACK);
-				node.getRight().setColor(BLACK);
+				node.getLeft().setColor(RedBlackTreeConstants.BLACK.colorValue);
+				node.getRight().setColor(RedBlackTreeConstants.BLACK.colorValue);
 			}
 			else
 			{
-				node.getLeft().setColor(RED);
-				node.getRight().setColor(RED);
+				node.getLeft().setColor(RedBlackTreeConstants.RED.colorValue);
+				node.getRight().setColor(RedBlackTreeConstants.RED.colorValue);
 			}
 		}	
 	}
@@ -87,8 +96,8 @@ public class RedBlackTree extends BSTTree implements RedBlackTreeContantsIfc
 		node.setLeft(rotatedNode.getRight());
 		rotatedNode.setRight(node);
 		rotatedNode.setColor(rotatedNode.getRight().getColor());
-		rotatedNode.getRight().setColor(RED);
-		
+		rotatedNode.getRight().setColor(RedBlackTreeConstants.RED.colorValue);
+
 		return rotatedNode;
 	}
 
@@ -103,8 +112,8 @@ public class RedBlackTree extends BSTTree implements RedBlackTreeContantsIfc
 		node.setRight(rotatedNode.getLeft());
 		rotatedNode.setLeft(node);
 		rotatedNode.setColor(rotatedNode.getLeft().getColor());
-		rotatedNode.getLeft().setColor(RED);
-		
+		rotatedNode.getLeft().setColor(RedBlackTreeConstants.RED.colorValue);
+
 		return rotatedNode;
 	}
 
@@ -117,7 +126,7 @@ public class RedBlackTree extends BSTTree implements RedBlackTreeContantsIfc
 	 */
 	private boolean isRed(Node nodeToCheck)
 	{
-		if (nodeToCheck != null && RED == nodeToCheck.getColor())
+		if (nodeToCheck != null && RedBlackTreeConstants.RED.colorValue == nodeToCheck.getColor())
 			return true;
 		return false;
 	}
