@@ -9,23 +9,22 @@ public class PopulateThread implements Runnable
 {
 	private FileProcessor inputFileProc;
 	private Results outputResult;
-	private int threadNumber;
 	
 	/**
 	 * Data member that holds the original tree
 	 */
-	private RedBlackTree tree_orig;
+	private RedBlackTree localTree;
 	
 	public PopulateThread() 
 	{
-		
 	}
 	
-	public PopulateThread(FileProcessor fileProcessor, Results results, int no) 
+	public PopulateThread(FileProcessor fileProcessor, Results results, RedBlackTree tree) 
 	{
-		threadNumber = no;
+		this();
 		inputFileProc = fileProcessor;
-		outputResult = results;	
+		outputResult = results;
+		localTree = tree;
 	}
 	
 	@Override
@@ -48,7 +47,7 @@ public class PopulateThread implements Runnable
 					try
 					{
 						//check if node with that word string already exists
-						node_orig = tree_orig.search(tree_orig.getRoot(), temp[i]);
+						node_orig = localTree.search(localTree.getRoot(), temp[i]);
 						node_orig.setWordOccurances(node_orig.getWordOccurances() + 1);
 					}
 					/*catch (ArrayIndexOutOfBoundsException e) 
@@ -62,13 +61,9 @@ public class PopulateThread implements Runnable
 						node_orig.setWord(temp[i]);
 						node_orig.setWordOccurances(1);
 					}
-					
-					tree_orig.insert(node_orig);
+					localTree.insert(node_orig);
 				}
 			}
 		}
-		
-		//close the open file in the end of reading
-		inputFileProc.closeFile();
 	}
 }

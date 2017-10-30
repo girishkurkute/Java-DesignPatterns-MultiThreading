@@ -31,16 +31,15 @@ public class BSTTree
 	 * @param bNumber - is the bNumber whose node is to be found
 	 * @return node that matches the bNumber passed as parameter
 	 */
-	public Node search(Node recursionRoot, String word)
+	public synchronized Node search(Node recursionRoot, String word)
 	{
 		if(null == recursionRoot || 0 == word.compareTo(recursionRoot.getWord()))
 		{
 			return new Node(recursionRoot);
 		}
 		
-		//if(bNumber < recursionRoot.getbNumber())
-		System.out.println("Test Word: " + word);
-		System.out.println("Test Root's Word: " + recursionRoot.getWord());
+		//System.out.println("Test Word: " + word);
+		//System.out.println("Test Root's Word: " + recursionRoot.getWord());
 		
 		if(word.compareTo(recursionRoot.getWord()) < 0)
 		{
@@ -73,11 +72,10 @@ public class BSTTree
 			return rootRecursive;
 		}
 		
-		System.out.println("Rec Word: " + node.getWord());
-		System.out.println("Rec Root's Word: " + rootRecursive.getWord());
+		//System.out.println("Rec Word: " + node.getWord());
+		//System.out.println("Rec Root's Word: " + rootRecursive.getWord());
 
 		//If node's word is smaller than root's word, add the node as left child
-		//if(node.getbNumber() < rootRecursive.getbNumber())
 		if(node.getWord().compareTo(rootRecursive.getWord()) < 0)
 		{
 			rootRecursive.setLeft(insertRecursive(rootRecursive.getLeft(), node));
