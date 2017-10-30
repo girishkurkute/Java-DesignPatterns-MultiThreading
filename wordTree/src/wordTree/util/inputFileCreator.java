@@ -43,7 +43,7 @@ public class inputFileCreator
 			int index = (int) (rnd.nextFloat() * RANDOMCHARS.length());
 			char newChar = RANDOMCHARS.charAt(index);
 
-			//Using the below condition to avoid multiple spaces - but this doesnt repeat any other character as well
+			//Using the below condition to avoid multiple spaces
 			if(newChar == oldChar && oldChar == ' ')
 			{
 				continue;
