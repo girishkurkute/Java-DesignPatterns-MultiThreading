@@ -47,7 +47,7 @@ public class CreateWorkers
 		this();
 		inputFileProc = fileProcessor;
 		outputResult = results;
-		outputResult.writeToScreen("CreateWorkers class parameterized constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
+		MyLogger.writeMessage("CreateWorkers class parameterized constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
 	}
 
 	/**

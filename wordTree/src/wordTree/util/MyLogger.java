@@ -10,7 +10,7 @@ public class MyLogger
       DEBUG_VALUE=0 [No output should be printed from the application, except the line "The average preference value is X.Y"]
 	 */
 
-	public static enum DebugLevel {RELEASE, TBD_1, TBD_2, THREAD_RUN, CONSTRUCTOR};
+	public static enum DebugLevel {RELEASE, WORD_DELETE, Line_Read, THREAD_RUN, CONSTRUCTOR};
 
 	private static DebugLevel debugLevel;
 
@@ -25,8 +25,8 @@ public class MyLogger
 		{
 		case 4: debugLevel = DebugLevel.CONSTRUCTOR; break;
 		case 3: debugLevel = DebugLevel.THREAD_RUN; break;
-		case 2: debugLevel = DebugLevel.TBD_2; break;
-		case 1: debugLevel = DebugLevel.TBD_1; break;
+		case 2: debugLevel = DebugLevel.Line_Read; break;
+		case 1: debugLevel = DebugLevel.WORD_DELETE; break;
 		case 0: debugLevel = DebugLevel.RELEASE; break;
 		}
 	}

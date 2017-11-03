@@ -44,18 +44,19 @@ public class PopulateThread implements Runnable
 		inputFileProc = fileProcessor;
 		outputResult = results;
 		localTree = tree;
-		outputResult.writeToScreen("PopulateThread class parameterized constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
+		MyLogger.writeMessage("PopulateThread class parameterized constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
 	}
 
 	@Override
 	public void run() 
 	{
-		outputResult.writeToScreen("PopulateThread class run() method was called", MyLogger.DebugLevel.THREAD_RUN);
+		MyLogger.writeMessage("PopulateThread class run() method was called", MyLogger.DebugLevel.THREAD_RUN);
 		String line = "";
 		String temp[];
 
 		while((line = inputFileProc.readLine("")) != null)
 		{
+			MyLogger.writeMessage("Thread "+ Thread.currentThread().getName()+" -> "+line, MyLogger.DebugLevel.Line_Read);
 			//remove leading or trailing whitespaces if any
 			line = line.trim();
 			temp = line.split("\\s+");

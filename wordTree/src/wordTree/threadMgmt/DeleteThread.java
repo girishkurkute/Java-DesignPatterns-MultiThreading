@@ -42,13 +42,13 @@ public class DeleteThread implements Runnable
 		delWord = deleteWord;
 		outputResult = results;
 		localTree = tree;
-		outputResult.writeToScreen("DeleteThread class parameterized constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
+		MyLogger.writeMessage("DeleteThread class parameterized constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
 	}
 
 	@Override
 	public void run() 
 	{
-		outputResult.writeToScreen("DeleteThread class run() method was called", MyLogger.DebugLevel.THREAD_RUN);
+		MyLogger.writeMessage("DeleteThread class run() method was called", MyLogger.DebugLevel.THREAD_RUN);
 		Node node_orig = null;
 		try
 		{
@@ -61,6 +61,7 @@ public class DeleteThread implements Runnable
 				if(node_orig.getWordOccurances() != 0)
 				{
 					node_orig.setWordOccurances(node_orig.getWordOccurances() - 1);
+					MyLogger.writeMessage(node_orig.getWord()+" deleted, new count = "+node_orig.getWordOccurances(), MyLogger.DebugLevel.WORD_DELETE);
 					localTree.insert(node_orig);
 				}
 			}
