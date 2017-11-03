@@ -4,21 +4,38 @@ import wordTree.store.Results;
 import wordTree.util.Node;
 import wordTree.util.RedBlackTree;
 
+/**
+ * Class to delete the words specified from the tree using threads.
+ * @author hloya, girish
+ *
+ */
 public class DeleteThread implements Runnable
 {
+	/**
+	 * Data Members
+	 */
 	@SuppressWarnings("unused")
 	private Results outputResult;
 	private String delWord;
 
 	/**
-	 * Data member that holds the original tree
+	 * Data member that holds the reference of original tree
 	 */
 	private RedBlackTree localTree;
 
+	/**
+	 * Default Constructor
+	 */
 	public DeleteThread() 
 	{
 	}
 
+	/**
+	 * Parameterized Constructor to initialize the local data members.
+	 * @param deleteWord - the word to be deleted.
+	 * @param results - instance of results class.
+	 * @param tree - the tree containing words read from input file as nodes.
+	 */
 	public DeleteThread(String deleteWord, Results results, RedBlackTree tree) 
 	{
 		this();
@@ -37,20 +54,18 @@ public class DeleteThread implements Runnable
 			{
 				//check if node with that word string exists
 				node_orig = localTree.search(localTree.getRoot(), delWord);
+				
+				//Skip Deleting the word if it already has a count of 0.
 				if(node_orig.getWordOccurances() != 0)
 				{
 					node_orig.setWordOccurances(node_orig.getWordOccurances() - 1);
 					localTree.insert(node_orig);
 				}
-				else
-				{
-					throw new NullPointerException();
-				}
 			}
 		}
 		catch(IndexOutOfBoundsException | NullPointerException e)
 		{
-			System.err.println("Word Not Found or has count of 0, Skipping and Continuing with Next Word (if any)");
+			//System.err.println("Word Not Found or has count of 0, Skipping and Continuing with Next Word (if any)");
 		}
 	}
 }

@@ -25,12 +25,12 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface
 	private String outputFilePath;
 	
 	/**
-	 * Data member that stores the results(data) passed to this class
+	 * Data member that stores the results(data) passed to this class  - required only within this class
 	 */
 	private HashMap<Integer, String> resultSetStrings;
 	
 	/**
-	 * Counter used for storing result strings
+	 * Counter used for storing result strings - required only within this class
 	 */
 	private int i;
 	
@@ -116,7 +116,7 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface
 	
 	/**
 	 * Stores the result string passed into a data structure
-	 * @param s - contains the bNumber and Courses of the node for which this method is called
+	 * @param s - contains the count of words for which this method is called
 	 */
 	public void storeNewResult(String s)
 	{

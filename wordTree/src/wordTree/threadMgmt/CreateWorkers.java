@@ -5,8 +5,20 @@ import wordTree.util.FileProcessor;
 import wordTree.util.Node;
 import wordTree.util.RedBlackTree;
 
+/**
+ * Class which:
+ * <br> 
+ * creates the threads for populating the tree and then deleting the words specified
+ * <br>and<br>
+ * gives count of words read. 
+ * @author hloya, Girish
+ *
+ */
 public class CreateWorkers
 {
+	/**
+	 * Data Members
+	 */
 	private FileProcessor inputFileProc;
 	private Results outputResult;
 	private RedBlackTree commonTree;
@@ -14,18 +26,31 @@ public class CreateWorkers
 	private int distinctWordCount;
 	private int characterCount;
 
+	/**
+	 * Default Constructor which initializes the tree
+	 */
 	public CreateWorkers()
 	{
 		commonTree = new RedBlackTree();
 	}
 
+	/**
+	 * Parameterized Constructor which takes 2 parameters and initializes local copies of them.
+	 * @param fileProcessor - instance of FileProcessor class needed to read data from input file.
+	 * @param results - instance of Results class needed to store the result into an output file/display the result on the screen.
+	 */
 	public CreateWorkers(FileProcessor fileProcessor, Results results)
 	{
+		//calls the default constructor
 		this();
 		inputFileProc = fileProcessor;
 		outputResult = results;
 	}
 
+	/**
+	 * Creates threads responsible for filling up the tree with words read from file as nodes.
+	 * @param numberOfThreads - specifies the number of threads that need to be created
+	 */
 	public void startPopulateWorkers(int numberOfThreads)
 	{
 		int i = 1;
@@ -40,6 +65,11 @@ public class CreateWorkers
 		callJoinMethod();
 	}
 
+	/**
+	 * Creates threads responsible for deleting the words passed as parameters from the tree.
+	 * @param numberOfThreads - specifies the number of threads that need to be created
+	 * @param deleteWords - contains the words that need to be deleted
+	 */
 	public void startDeleteWorkers(int numberOfThreads, String deleteWords[])
 	{
 		int i = 1;
@@ -54,6 +84,9 @@ public class CreateWorkers
 		callJoinMethod();
 	}
 	
+	/**
+	 * Join Method that uses Thread.Join() internally to make the threads wait before continuing their execution.
+	 */
 	private void callJoinMethod() 
 	{
 		ThreadGroup currentGroup = Thread.currentThread().getThreadGroup();
@@ -76,6 +109,9 @@ public class CreateWorkers
 		}
 	}
 	
+	/**
+	 * Method that fetches the counts - word count, distinct words count and character count of the input file and then stores the count in a file.
+	 */
 	public void getCounts()
 	{
 		wordCount = 0;
@@ -88,6 +124,10 @@ public class CreateWorkers
 		outputResult.writeScheduleToFile();
 	}
 	
+	/**
+	 * Method used by getCounts() to traverse the tree recursively and calculate the required counts.
+	 * @param root - Root Node of the Tree
+	 */
 	private void calculateCountsRecursively(Node root)
 	{
 		if(root != null)

@@ -5,21 +5,38 @@ import wordTree.util.FileProcessor;
 import wordTree.util.Node;
 import wordTree.util.RedBlackTree;
 
+/**
+ * Class to populate the tree with the words read from the input file using threads.
+ * @author hloya, girish
+ *
+ */
 public class PopulateThread implements Runnable
 {
+	/**
+	 * Data Members
+	 */
 	private FileProcessor inputFileProc;
 	@SuppressWarnings("unused")
 	private Results outputResult;
 
 	/**
-	 * Data member that holds the original tree
+	 * Data member that holds the reference of the original tree
 	 */
 	private RedBlackTree localTree;
 
+	/**
+	 * Default Constructor
+	 */
 	public PopulateThread() 
 	{
 	}
 
+	/**
+	 * Parameterized Constructor to initialize the local data members.
+	 * @param fileProcessor - instance of FileProcessor Class to read data from input file.
+	 * @param results - instance of results class.
+	 * @param tree - the tree containing words read from input file as nodes.
+	 */
 	public PopulateThread(FileProcessor fileProcessor, Results results, RedBlackTree tree) 
 	{
 		this();

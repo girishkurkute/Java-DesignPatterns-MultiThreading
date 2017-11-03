@@ -40,7 +40,7 @@ public class FileProcessor
 	
 
 	/**
-	 * Method that reads 1 line at a time from the input file
+	 * Method that reads 1 line at a time from the input file - made synchronized to make it thread safe
 	 * @param filePath - contains the path of the file from which a line needs to be read
 	 * @return a line from the input file as String
 	 */

@@ -11,12 +11,16 @@ package wordTree.util;
  */
 public class RedBlackTree extends BSTTree
 {
-	//Implement this using fixed int values as per RedBlackTreeContantsIfc and then remove RedBlackTreeContantsIfc
+	/**
+	 * Enum to be used for Red Black Tree as Constants for Color
+	 * @author girish
+	 *
+	 */
 	public static enum RedBlackTreeConstants 
 	{
 		RED(1), BLACK(0);
 	
-		int colorValue;
+		final int colorValue;
 		private RedBlackTreeConstants(int value)
 		{
 			colorValue = value;

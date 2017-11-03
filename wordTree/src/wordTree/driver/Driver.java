@@ -13,8 +13,8 @@ import wordTree.util.MyLogger;
 public class Driver 
 {
 	/**
-	 * Main method responsible for creating the tree and then calling the delete function
-	 * @param args - Input given from command line which contains location of Input file, Delete file, and the Output Files for the 3 trees
+	 * Main method responsible for giving the count of the words in input file using threads
+	 * @param args - Input given from command line which contains location of Input file, Output file, Number of Threads, Words to be Deleted and Debug Level 
 	 */
 	public static void main(String[] args) 
 	{
@@ -24,7 +24,7 @@ public class Driver
 		String[] deleteWords;
 		int debugVal = -1;
 
-		if (args.length > 3)
+		if (5 == args.length)
 		{
 			inputFilePath = args[0];
 			outputFilePath	= args[1];
@@ -41,47 +41,44 @@ public class Driver
 
 			deleteWords = new String[NUM_THREADS];
 
-			//not proper check below, need to work on it more to make it dynamic
-			if (args.length == 4 + NUM_THREADS)
+			String[] tempDelWords = args[3].split("\\s+");
+
+			if(tempDelWords.length == NUM_THREADS)
 			{
 				for (int i = 0; i < NUM_THREADS; i++)
 				{
-					if(!args[i+3].matches("[a-zA-Z]+"))
+					/*if(!tempDelWords[i].matches("[a-zA-Z]+"))
 					{
-						System.err.println("The number of delete words are not equal to NUM_THREADS specified");
+						System.err.println("The delete words are not just alphabets");
 						System.exit(1);	
-					}
-					
-					deleteWords[i] = args[i+3];
-				}
-				/*for (int i = 0; i < NUM_THREADS; i++)
-				{
-					deleteWords[i] = args[i+3];
-				}*/
+					}*/
 
-				if(args[3+NUM_THREADS].matches("[0-4]"))
-				{
-					debugVal = Integer.parseInt(args[3+NUM_THREADS]);
-					MyLogger.setDebugValue(debugVal);
+					deleteWords[i] = tempDelWords[i];
 				}
-				else
-				{
-					System.err.println("The last parameter should be a digit in range of 0-4 specifying debug level desired");
-					System.exit(1);
-				}
-
-				FileProcessor fileProc = new FileProcessor(inputFilePath);
-				Results result = new Results(outputFilePath);
-				CreateWorkers workers = new CreateWorkers(fileProc, result);
-				workers.startPopulateWorkers(NUM_THREADS);
-				workers.startDeleteWorkers(NUM_THREADS, deleteWords);
-				workers.getCounts();
 			}
 			else
 			{
-				System.err.println("Invalid number of arguments, please recheck");
+				System.err.println("The delete words are not equal to NUM_THREADS specified");
 				System.exit(1);
 			}
+
+			if(args[4].matches("[0-4]"))
+			{
+				debugVal = Integer.parseInt(args[4]);
+				MyLogger.setDebugValue(debugVal);
+			}
+			else
+			{
+				System.err.println("The last parameter should be a digit in range of 0-4 specifying debug level desired");
+				System.exit(1);
+			}
+
+			FileProcessor fileProc = new FileProcessor(inputFilePath);
+			Results result = new Results(outputFilePath);
+			CreateWorkers workers = new CreateWorkers(fileProc, result);
+			workers.startPopulateWorkers(NUM_THREADS);
+			workers.startDeleteWorkers(NUM_THREADS, deleteWords);
+			workers.getCounts();
 		}
 		else
 		{

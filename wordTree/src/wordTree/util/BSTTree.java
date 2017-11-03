@@ -28,8 +28,8 @@ public class BSTTree
 	/**
 	 * Method to find a desired node
 	 * @param recursionRoot - contains node starting with root and gets refined to a particular node that you are trying to find through recursive calls
-	 * @param bNumber - is the bNumber whose node is to be found
-	 * @return node that matches the bNumber passed as parameter
+	 * @param word - is the word whose node is to be found
+	 * @return node that matches the word passed as parameter
 	 */
 	public Node search(Node recursionRoot, String word)
 	{
@@ -96,20 +96,4 @@ public class BSTTree
 	{
 		return root;
 	}
-	
-	/**
-	 * Stores the bNumber and Courses of the nodes of the Caller Tree in ascending order of the bNumber in the data member of Results Class
-	 * @param r - instance of Results class that stores the bNumber and Courses of the node
-	 * @param root - contains the root node of the caller tree
-	 */
-	public void printNodes(Results r, Node root)
-	{
-		if(root != null)
-		{
-			printNodes(r, root.getLeft());
-			r.storeNewResult(root.toString());
-			printNodes(r, root.getRight());
-		}
-	}
-
 }
