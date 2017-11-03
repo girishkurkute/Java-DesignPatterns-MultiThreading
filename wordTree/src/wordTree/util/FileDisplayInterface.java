@@ -10,5 +10,5 @@ public interface FileDisplayInterface
 	/**
 	 * Method that should be overridden to write to some file
 	 */
-	public void writeToFile();
+	public void writeScheduleToFile();
 }

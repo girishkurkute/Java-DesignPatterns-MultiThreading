@@ -85,7 +85,7 @@ public class CreateWorkers
 		outputResult.storeNewResult("The total number of words: " + wordCount);
 		outputResult.storeNewResult("The total number of characters: " + characterCount);
 		outputResult.storeNewResult("The total number of distinct words: "+ distinctWordCount);
-		outputResult.writeToFile();
+		outputResult.writeScheduleToFile();
 	}
 	
 	private void calculateCountsRecursively(Node root)

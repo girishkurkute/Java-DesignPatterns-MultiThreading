@@ -8,6 +8,7 @@ import java.util.HashMap;
 import wordTree.util.FileDisplayInterface;
 import wordTree.util.MyLogger;
 import wordTree.util.StdoutDisplayInterface;
+import wordTree.util.MyLogger.DebugLevel;
 
 /**
  * Class that stores the result of operations performed on the referencer of this class.
@@ -56,13 +57,13 @@ public class Results implements FileDisplayInterface, StdoutDisplayInterface
 	}
 
 	@Override
-	public void writeToStdout(String s) 
+	public void writeToScreen(String s, DebugLevel dLvl) 
 	{
-		//not using this method
+		MyLogger.writeMessage(s, dLvl);
 	}
 
 	@Override
-	public void writeToFile()
+	public void writeScheduleToFile()
 	{
 		try 
 		{
