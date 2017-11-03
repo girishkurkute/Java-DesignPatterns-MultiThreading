@@ -1,6 +1,7 @@
 package wordTree.threadMgmt;
 
 import wordTree.store.Results;
+import wordTree.util.MyLogger;
 import wordTree.util.Node;
 import wordTree.util.RedBlackTree;
 
@@ -14,7 +15,6 @@ public class DeleteThread implements Runnable
 	/**
 	 * Data Members
 	 */
-	@SuppressWarnings("unused")
 	private Results outputResult;
 	private String delWord;
 
@@ -28,6 +28,7 @@ public class DeleteThread implements Runnable
 	 */
 	public DeleteThread() 
 	{
+		MyLogger.writeMessage("DeleteThread class default constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
 	}
 
 	/**
@@ -38,15 +39,16 @@ public class DeleteThread implements Runnable
 	 */
 	public DeleteThread(String deleteWord, Results results, RedBlackTree tree) 
 	{
-		this();
 		delWord = deleteWord;
 		outputResult = results;
 		localTree = tree;
+		outputResult.writeToScreen("DeleteThread class parameterized constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
 	}
 
 	@Override
 	public void run() 
 	{
+		outputResult.writeToScreen("DeleteThread class run() method was called", MyLogger.DebugLevel.THREAD_RUN);
 		Node node_orig = null;
 		try
 		{

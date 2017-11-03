@@ -2,6 +2,7 @@ package wordTree.threadMgmt;
 
 import wordTree.store.Results;
 import wordTree.util.FileProcessor;
+import wordTree.util.MyLogger;
 import wordTree.util.Node;
 import wordTree.util.RedBlackTree;
 
@@ -16,7 +17,6 @@ public class PopulateThread implements Runnable
 	 * Data Members
 	 */
 	private FileProcessor inputFileProc;
-	@SuppressWarnings("unused")
 	private Results outputResult;
 
 	/**
@@ -29,6 +29,7 @@ public class PopulateThread implements Runnable
 	 */
 	public PopulateThread() 
 	{
+		MyLogger.writeMessage("PopulateThread class default constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
 	}
 
 	/**
@@ -43,11 +44,13 @@ public class PopulateThread implements Runnable
 		inputFileProc = fileProcessor;
 		outputResult = results;
 		localTree = tree;
+		outputResult.writeToScreen("PopulateThread class parameterized constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
 	}
 
 	@Override
 	public void run() 
 	{
+		outputResult.writeToScreen("PopulateThread class run() method was called", MyLogger.DebugLevel.THREAD_RUN);
 		String line = "";
 		String temp[];
 

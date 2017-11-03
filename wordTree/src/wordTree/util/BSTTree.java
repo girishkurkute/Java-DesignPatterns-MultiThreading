@@ -1,7 +1,5 @@
 package wordTree.util;
 
-import wordTree.store.Results;
-
 /**
  * Implements a binary search tree where elements smaller than root are on left
  * and greater than root are on right.
@@ -23,6 +21,7 @@ public class BSTTree
 	public BSTTree()
 	{
 		root = null;
+		MyLogger.writeMessage("BSTTree class default constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
 	}
 
 	/**

@@ -33,6 +33,7 @@ public class RedBlackTree extends BSTTree
 	public RedBlackTree()
 	{
 		super();
+		MyLogger.writeMessage("RedBlackTree class default constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
 	}
 
 	/**

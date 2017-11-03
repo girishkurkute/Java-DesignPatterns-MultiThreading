@@ -2,6 +2,7 @@ package wordTree.threadMgmt;
 
 import wordTree.store.Results;
 import wordTree.util.FileProcessor;
+import wordTree.util.MyLogger;
 import wordTree.util.Node;
 import wordTree.util.RedBlackTree;
 
@@ -32,6 +33,7 @@ public class CreateWorkers
 	public CreateWorkers()
 	{
 		commonTree = new RedBlackTree();
+		MyLogger.writeMessage("CreateWorkers class default constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
 	}
 
 	/**
@@ -45,6 +47,7 @@ public class CreateWorkers
 		this();
 		inputFileProc = fileProcessor;
 		outputResult = results;
+		outputResult.writeToScreen("CreateWorkers class parameterized constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
 	}
 
 	/**

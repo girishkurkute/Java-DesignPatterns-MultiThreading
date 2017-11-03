@@ -26,6 +26,7 @@ public class FileProcessor
 	 */
 	public FileProcessor(String filePath)
 	{
+		MyLogger.writeMessage("FileProcessor class paramterized constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
 		try
 		{
 			isr = new FileReader(new File(filePath));
@@ -35,6 +36,7 @@ public class FileProcessor
 		{
 			System.err.println("File Not Found, Please recheck the path specified in arguments");
 			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 	
@@ -55,6 +57,7 @@ public class FileProcessor
 		{
 			System.err.println("Cannot Read from File");
 			e.printStackTrace();
+			System.exit(1);
 		}
 
 		return oneLineFromFile;
@@ -75,6 +78,7 @@ public class FileProcessor
 		{
 			System.err.println("File in Use, File cannot be closed");
 			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 

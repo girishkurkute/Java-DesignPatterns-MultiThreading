@@ -22,6 +22,7 @@ public class Node
 	 */
 	public Node()
 	{
+		MyLogger.writeMessage("Node class default constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
 		word = "";
 		wordOccurances = 0;
 		left = right = null;
@@ -34,6 +35,7 @@ public class Node
 	 */
 	public Node(Node node)
 	{
+		MyLogger.writeMessage("Node class paramterized constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
 		word = node.getWord();
 		wordOccurances = node.getWordOccurances();
 		left = node.getLeft();
