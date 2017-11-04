@@ -56,7 +56,7 @@ public class PopulateThread implements Runnable
 
 		while((line = inputFileProc.readLine("")) != null)
 		{
-			MyLogger.writeMessage("Thread "+ Thread.currentThread().getName()+" -> "+line, MyLogger.DebugLevel.Line_Read);
+			MyLogger.writeMessage("Thread "+ Thread.currentThread().getName()+" -> "+line, MyLogger.DebugLevel.LINE_READ);
 			//remove leading or trailing whitespaces if any
 			line = line.trim();
 			temp = line.split("\\s+");
