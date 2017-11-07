@@ -1,3 +1,7 @@
-The total number of words: 269479
-The total number of characters: 6026951
-The total number of distinct words: 244510
+The total number of words: 269409
+The total number of characters: 6026966
+The total number of distinct words: 244427
+
+The total number of words: 269409
+The total number of characters: 6026966
+The total number of distinct words: 244427
