@@ -10,6 +10,14 @@ public class countHelper
 	private int characterCount;
 	
 	/**
+	 * Default Constructor
+	 */
+	public countHelper() 
+	{
+		MyLogger.writeMessage("countHelper class default constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
+	}
+	
+	/**
 	 * Method that fetches the counts - word count, distinct words count and character count of the input file.
 	 * @param tree - tree with words read from the file.
 	 * @return an array with word count, character count and distinct word count.
