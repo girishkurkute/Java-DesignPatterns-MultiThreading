@@ -4,6 +4,8 @@ import wordTree.store.Results;
 import wordTree.threadMgmt.CreateWorkers;
 import wordTree.util.FileProcessor;
 import wordTree.util.MyLogger;
+import wordTree.util.RedBlackTree;
+import wordTree.util.countHelper;
 
 /**
  * Class containing the main method which is the starting point of code
@@ -65,10 +67,20 @@ public class Driver {
 
 			FileProcessor fileProc = new FileProcessor(inputFilePath);
 			Results result = new Results(outputFilePath);
+			
 			CreateWorkers workers = new CreateWorkers(fileProc, result);
-			workers.startPopulateWorkers(NUM_THREADS);
-			workers.startDeleteWorkers(NUM_THREADS, deleteWords);
-			workers.getCounts();
+			RedBlackTree tree = new RedBlackTree();
+			tree = workers.startPopulateWorkers(NUM_THREADS, tree);
+			
+			tree = workers.startDeleteWorkers(NUM_THREADS, deleteWords, tree);
+			countHelper countHelper = new countHelper(); 
+			int counts[] = countHelper.getCounts(tree);
+			
+			result.storeNewResult("The total number of words: " + counts[0]);
+			result.storeNewResult("The total number of characters: " + counts[1]);
+			result.storeNewResult("The total number of distinct words: "+ counts[2]);
+			result.writeScheduleToFile();
+			
 		} else {
 			System.err.println("Invalid number of arguments, please recheck");
 			System.exit(1);

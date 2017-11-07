@@ -3,7 +3,6 @@ package wordTree.threadMgmt;
 import wordTree.store.Results;
 import wordTree.util.FileProcessor;
 import wordTree.util.MyLogger;
-import wordTree.util.Node;
 import wordTree.util.RedBlackTree;
 
 /**
@@ -22,17 +21,12 @@ public class CreateWorkers
 	 */
 	private FileProcessor inputFileProc;
 	private Results outputResult;
-	private RedBlackTree commonTree;
-	private int wordCount;
-	private int distinctWordCount;
-	private int characterCount;
 
 	/**
 	 * Default Constructor which initializes the tree
 	 */
 	public CreateWorkers()
 	{
-		commonTree = new RedBlackTree();
 		MyLogger.writeMessage("CreateWorkers class default constructor was called", MyLogger.DebugLevel.CONSTRUCTOR);
 	}
 
@@ -52,9 +46,11 @@ public class CreateWorkers
 
 	/**
 	 * Creates threads responsible for filling up the tree with words read from file as nodes.
-	 * @param numberOfThreads - specifies the number of threads that need to be created
+	 * @param numberOfThreads - specifies the number of threads that need to be created.
+	 * @param commonTree - tree that is to be populated with the words read from file.
+	 * @return tree populated with words read from file.
 	 */
-	public void startPopulateWorkers(int numberOfThreads)
+	public RedBlackTree startPopulateWorkers(int numberOfThreads, RedBlackTree commonTree)
 	{
 		int i = 1;
 		while(i <= numberOfThreads)
@@ -66,14 +62,17 @@ public class CreateWorkers
 		}
 
 		callJoinMethod();
+		return commonTree;
 	}
 
 	/**
 	 * Creates threads responsible for deleting the words passed as parameters from the tree.
-	 * @param numberOfThreads - specifies the number of threads that need to be created
-	 * @param deleteWords - contains the words that need to be deleted
+	 * @param numberOfThreads - specifies the number of threads that need to be created.
+	 * @param deleteWords - contains the words that need to be deleted.
+	 * @param commonTree - tree that is populated with the words read from file.
+	 * @return tree after deleting words specified.
 	 */
-	public void startDeleteWorkers(int numberOfThreads, String deleteWords[])
+	public RedBlackTree startDeleteWorkers(int numberOfThreads, String deleteWords[], RedBlackTree commonTree)
 	{
 		int i = 1;
 		while(i <= numberOfThreads)
@@ -85,6 +84,7 @@ public class CreateWorkers
 		}
 
 		callJoinMethod();
+		return commonTree;
 	}
 	
 	/**
@@ -109,38 +109,6 @@ public class CreateWorkers
 				e.printStackTrace();
 				System.exit(1);
 			}
-		}
-	}
-	
-	/**
-	 * Method that fetches the counts - word count, distinct words count and character count of the input file and then stores the count in a file.
-	 */
-	public void getCounts()
-	{
-		wordCount = 0;
-		distinctWordCount = 0;
-		characterCount = 0;
-		calculateCountsRecursively(commonTree.getRoot());
-		outputResult.storeNewResult("The total number of words: " + wordCount);
-		outputResult.storeNewResult("The total number of characters: " + characterCount);
-		outputResult.storeNewResult("The total number of distinct words: "+ distinctWordCount);
-		outputResult.writeScheduleToFile();
-	}
-	
-	/**
-	 * Method used by getCounts() to traverse the tree recursively and calculate the required counts.
-	 * @param root - Root Node of the Tree
-	 */
-	private void calculateCountsRecursively(Node root)
-	{
-		if(root != null)
-		{
-			calculateCountsRecursively(root.getLeft()); 
-			wordCount += root.getWordOccurances();
-			if(root.getWordOccurances() != 0)
-				distinctWordCount += 1;
-			characterCount += root.getWordOccurances()*root.getWord().length();
-			calculateCountsRecursively(root.getRight());
 		}
 	}
 }
