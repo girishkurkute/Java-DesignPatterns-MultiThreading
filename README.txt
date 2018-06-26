@@ -17,23 +17,7 @@ eg: ant -buildfile src/build.xml run -Darg0=/import/linux/home1/hloya1/input_fil
 2. Output file location doesn't matter but its name should be "output.txt"
 -----------------------------------------------------------------------
 
-"I have done this assignment completely on my own. I have not copied
-it, nor have I given my solution to anyone else. I understand that if
-I am involved in plagiarism or cheating I will have to sign an
-official form that I have cheated and that this form will be stored in
-my official university record. I also understand that I will receive a
-grade of 0 for the involved assignment for my first offense and that I
-will receive a grade of F for the course for any additional
-offense.”
 
-[Date: 11/03/2017]
-I have done this assignment with a teammate - Girish Kurkute as the specification was to work in teams of two.
------------------------------------------------------------------------
-Justify your choice of tree in the README.txt file in terms of time complexity for each of the three operations, and for the best, worst, and average case.
--> I chose RED-BLACK Tree because it being a self-balancing bst tree it has a time complexity of O(log n) for all three operations(insert, delete and search) in all, the best, worst, and average cases.
-It is particularly helpful in case of frequent inserts.
-
-The choice of data structure used in the Results class should also be justified in the README.txt in terms of time complexity (average, best, worst case).
 -> Hashmap best and average case for Search, Insert and Delete is O(1) and worst case is O(n). So, HashMap is used in the Results class so that searching could be done faster.
 
 DEBUG_VALUE=2
